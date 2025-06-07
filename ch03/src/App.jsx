@@ -12,7 +12,7 @@ import LifeCycleComponent from './components/LifeCycleComponent';
 
 /*
   날짜 : 2025/05/13
-  이름 : 한결
+  이름 : 김소현
   내용 : ch03. 리액트 컴포넌트
 */
 

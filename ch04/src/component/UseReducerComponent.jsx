@@ -1,0 +1,73 @@
+import React from "react";
+import { useReducer } from "react";
+
+// 상태 선언 (바깥에 선언함)
+const initCountState = { count: 0 };
+
+// 리듀서 정의 - 상태 변경 함수
+function countReducer(state, action) {
+  switch (action.type) {
+    case "INCREASE":
+      return { count: state.count + 1 };
+    case "DECREASE":
+      return { count: state.count - 1 };
+    case "RESET":
+      return { count: 0 };
+  }
+}
+
+// 상태 선언
+const initUserState = { name: "", age: 0 };
+
+// 리듀서 정의
+function userReducer(state, action) {
+  return { ...state, [action.name]: action.value };
+}
+
+// state의 처리가 복잡할 경우, 또 다른 처리가 필요한 경우 useReducerComponent 사용
+export const UseReducerComponent = () => {
+  // reducer 생성
+  const [countState, countDispatch] = useReducer(countReducer, initCountState);
+  const [userState, userDispatch] = useReducer(userReducer, initUserState);
+
+  // 전개연산자
+  const user = {
+    name: "홍길동",
+    age: 21,
+  };
+
+  // 위 age를 31로 수정
+  const updateUser = {
+    ...user,
+    age: 31,
+  }
+
+  console.log(updateUser);
+
+  return (
+    <div className="UseReducerComponent">
+      <h4>UseReducerComponent</h4>
+      <p>count : {countState.count}</p>
+
+      {/* prettier-ignore */}
+      <>
+      <button onClick={() => {countDispatch({ type: "INCREASE" });}}>증가</button>
+      <button onClick={() => {countDispatch({ type: "DECREASE" });}}>감소</button>
+      <button onClick={() => {countDispatch({ type: "RESET" });}}>리셋</button>
+      </>
+
+      <p>
+        name : {userState.name}
+        <br />
+        age : {userState.age}
+        <br />
+      </p>
+
+      {/* prettier-ignore */}
+      <>
+        <input type="text" name="name" value={userState.name} onChange={(e)=>{userDispatch(e.target)}}/>
+        <input type="text" name="age" value={userState.age} onChange={(e)=>{userDispatch(e.target)}}/>
+      </>
+    </div>
+  );
+};

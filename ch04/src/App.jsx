@@ -11,7 +11,7 @@ import { UseCallbackComponent } from "./component/UseCallbackComponent";
 
 /*
   날짜 : 2025/05/13
-  이름 : 한결
+  이름 : 김소현
   내용 : ch04. 리액트 훅
 */
 
